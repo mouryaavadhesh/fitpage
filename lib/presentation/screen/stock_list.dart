@@ -57,14 +57,6 @@ class _StockState extends State<StockList> {
             childCount: 1, // 1000 list items
           ),
         ),
-        // SliverList(
-        //   delegate: SliverChildBuilderDelegate(
-        //     (BuildContext context, int index) {
-        //       return _memberCard(context, stockLoaded.stockList[index]);
-        //     },
-        //     childCount: stockLoaded.stockList.length, // 1000 list items
-        //   ),
-        // ),
         SliverAnimatedList(
             key:context.read<StockCubit>().listKey,
             initialItemCount: stockLoaded.stockList.length,
