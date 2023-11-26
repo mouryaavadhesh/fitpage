@@ -6,7 +6,6 @@ import 'package:fitpage/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class FilterCubit extends AppCubit<FilterState> {
-  // The key to be used when accessing SliverAnimatedListState
   final GlobalKey<SliverAnimatedListState> listKey =
       GlobalKey<SliverAnimatedListState>();
   final StockSignal stockSignal;
@@ -47,18 +46,15 @@ class FilterCubit extends AppCubit<FilterState> {
     // Map<dynamic, List<int>> flutterMap = {key: value};
     // print(flutterMap);
 
+    List<String> dividedStrings = [];
 
-     List<String> dividedStrings = [];
-    // // result.forEach((key, value) {
-    // //      print("$key: ${value.type}, ${value.studyType}, ${value.parameterName}, ${value.minValue}, ${value.maxValue}, ${value.defaultValue}");
-    // // });
-    //
     extractedStrings.forEach((element) {
       // print(element);
       // print(signalCriteria.variable[element]);
       // print(json.decode(json.encode(signalCriteria.variable[element].toString())));
 
-      IndicatorVariable indicatorVariable = IndicatorVariable.fromJson(signalCriteria.variable[element]);
+      IndicatorVariable indicatorVariable =
+          IndicatorVariable.fromJson(signalCriteria.variable[element]);
       if (dividedStrings.isEmpty) {
         dividedStrings = signalCriteria.text.split(element);
         dividedStrings.insert(
@@ -72,15 +68,12 @@ class FilterCubit extends AppCubit<FilterState> {
       }
     });
 
-    //return [];
     return dividedStrings.map((e) => e.trimLeft().trimRight().trim()).toList();
-
   }
 
   String getTheNumber(IndicatorVariable indicatorVariable) {
     num number = 0;
-    if (StockFilterTypeEnum
-        .stockFilterTypeEnum[indicatorVariable.type] ==
+    if (StockFilterTypeEnum.stockFilterTypeEnum[indicatorVariable.type] ==
         StockFilterType.indicator) {
       number = indicatorVariable.defaultValue;
     } else {
