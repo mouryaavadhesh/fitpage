@@ -1,0 +1,2 @@
+
+enum DataErrorState { exception, noData }
