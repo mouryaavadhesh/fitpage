@@ -68,10 +68,12 @@ class _StockState extends State<StockList> {
         SliverAnimatedList(
             key:context.read<StockCubit>().listKey,
             initialItemCount: stockLoaded.stockList.length,
-            itemBuilder: (context, index, animation) => SizeTransition(
-                sizeFactor: animation,
-                child: _stockCard(context, stockLoaded.stockList[index])
-            )
+            itemBuilder: (context, index, animation) {
+              return SlideTransition(
+                position: animation.drive(Tween(begin: Offset(1.0, 0.0), end: Offset(0.0, 0.0))),
+                child:  _stockCard(context, stockLoaded.stockList[index]),
+              );
+            },
         )
       ],
     );

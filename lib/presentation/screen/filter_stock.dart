@@ -1,4 +1,3 @@
-import 'package:dotted_line/dotted_line.dart';
 import 'package:fitpage/domain/entites/stock_model.dart';
 import 'package:fitpage/presentation/cubit/filter_cubit.dart';
 import 'package:fitpage/presentation/cubit/state/filter_state.dart';
