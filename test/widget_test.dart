@@ -53,6 +53,7 @@ void main() {
             itemCount: stockScreenerData.length,
             itemBuilder: (context, index) {
               final item = stockScreenerData[index];
+              print("${item['name']}");
               return Card(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -73,6 +74,7 @@ void main() {
     );
 
     for (final item in stockScreenerData) {
+      print("${item['name']}");
       expect(find.text("${item['name']}"), findsOneWidget);
       expect(find.text("${item['tag']}"), findsOneWidget);
     }
