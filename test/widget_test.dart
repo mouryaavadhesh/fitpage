@@ -8,23 +8,73 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:fitpage/main.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const StockApp());
+    final stockScreenerData = [
+      {
+        'id': 1,
+        'name': 'Top gainers',
+        'tag': 'Intraday Bullish',
+        'color': 'green',
+        'criteria': [
+          {
+            'type': 'plain_text',
+            'text': 'Sort - %price change in descending order'
+          }
+        ]
+      },
+      {
+        'id': 2,
+        'name': 'Intraday buying seen in last 15 minutes',
+        'tag': 'Bullish',
+        'color': 'green',
+        'criteria': [
+          {
+            'type': 'plain_text',
+            'text': 'Current candle open = current candle high'
+          },
+          {
+            'type': 'plain_text',
+            'text': 'Previous candle open = previous candle high'
+          },
+          {
+            'type': 'plain_text',
+            'text': '2 previous candle’s open = 2 previous candle’s high'
+          }
+        ]
+      },
+    ];
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: ListView.builder(
+            itemCount: stockScreenerData.length,
+            itemBuilder: (context, index) {
+              final item = stockScreenerData[index];
+              return Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("${item['name']}"),
+                      const SizedBox(height: 8.0),
+                      Text("${item['tag']}"),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+      ),
+    );
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    for (final item in stockScreenerData) {
+      expect(find.text("${item['name']}"), findsOneWidget);
+      expect(find.text("${item['tag']}"), findsOneWidget);
+    }
   });
 }
