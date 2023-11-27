@@ -94,13 +94,13 @@ class _FilterState extends State<FilterStock> {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            StockText.textInterSemiBold(
+            StockText.textSemiBold(
               text: stockSignal.name.capitalizeFirstLetter(),
               maxLines: 2,
               color: Colors.white,
               fontSize: 20,
             ),
-            StockText.textInterSemiBold(
+            StockText.textSemiBold(
                 text: stockSignal.tag.capitalizeFirstLetter(),
                 color: Utils.convertColorTextToColor(stockSignal.color),
                 fontSize: 14),
@@ -122,13 +122,13 @@ class _FilterState extends State<FilterStock> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           if (index > 0) ...[
-            StockText.textInterSemiBold(
+            StockText.textSemiBold(
                 text: "\nand\n",
                 color: Colors.white,
                 fontSize: 14,
                 maxLines: 3),
           ],
-          StockText.textInterSemiBold(
+          StockText.textSemiBold(
               text: signalCriteria.text,
               color: Colors.white,
               fontSize: 14,
@@ -150,7 +150,7 @@ class _FilterState extends State<FilterStock> {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           if (index > 0) ...[
-            StockText.textInterSemiBold(
+            StockText.textSemiBold(
                 text: "\nand\n",
                 color: Colors.white,
                 fontSize: 14,

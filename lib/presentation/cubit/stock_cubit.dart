@@ -9,8 +9,6 @@ import 'package:flutter/material.dart';
 class StockCubit extends AppCubit<StockState> {
   final BuildContext _context;
   final StockRepo _stockRepo = StockRepo();
-
-  // The key to be used when accessing SliverAnimatedListState
   final GlobalKey<SliverAnimatedListState> listKey =
       GlobalKey<SliverAnimatedListState>();
 

@@ -30,7 +30,6 @@ class FilterCubit extends AppCubit<FilterState> {
   @override
   Future<void> onRefresh() async {
     emit(FilterLoaded(stockSignal: stockSignal));
-
     return Future.value(false);
   }
 

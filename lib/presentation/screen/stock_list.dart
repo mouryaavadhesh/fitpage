@@ -81,13 +81,13 @@ class _StockState extends State<StockList> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            StockText.textInterSemiBold(
+            StockText.textSemiBold(
               text: stockSignal.name.capitalizeFirstLetter(),
               maxLines: 2,
               color: Colors.white,
               fontSize: 20,
             ),
-            StockText.textInterSemiBold(
+            StockText.textSemiBold(
                 text: stockSignal.tag.capitalizeFirstLetter(),
                 color: Utils.convertColorTextToColor(stockSignal.color),
                 fontSize: 14),

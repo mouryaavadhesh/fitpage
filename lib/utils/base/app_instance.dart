@@ -11,8 +11,5 @@ class AppInstance {
 
   AppInstance._internal();
 
-
-
-
   DioClient get getApiInstance => _dioClient;
 }

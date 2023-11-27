@@ -1,8 +1,6 @@
 import 'package:fitpage/utils/widget/custom_text.dart';
 import 'package:flutter/material.dart';
 
-
-
 class StockText {
   static Widget text(String text, double size, Color color, String font,
       {int maxLines = 1}) {
@@ -16,16 +14,15 @@ class StockText {
     );
   }
 
-  static CustomText textInterRegular({
-    required String text,
-    required int fontSize,
-    Color color = Colors.black,
-    int maxLines = 1,
-    TextOverflow textOverFlow = TextOverflow.ellipsis,
-    TextAlign textAlign = TextAlign.start,
-    FontStyle fontStyle = FontStyle.normal,
-    TextDecoration textDecoration = TextDecoration.none
-  }) {
+  static CustomText textInterRegular(
+      {required String text,
+      required int fontSize,
+      Color color = Colors.black,
+      int maxLines = 1,
+      TextOverflow textOverFlow = TextOverflow.ellipsis,
+      TextAlign textAlign = TextAlign.start,
+      FontStyle fontStyle = FontStyle.normal,
+      TextDecoration textDecoration = TextDecoration.none}) {
     return CustomText(
       color: color,
       text: text,
@@ -39,16 +36,15 @@ class StockText {
     );
   }
 
-  static CustomText textInterSemiBold({
-    required String text,
-    required int fontSize,
-    Color color = Colors.black,
-    int maxLines = 1,
-    TextOverflow textOverFlow = TextOverflow.ellipsis,
-    TextAlign textAlign = TextAlign.start,
-    TextDecoration textDecoration = TextDecoration.none,
-    double letterSpacing = 0
-  }) {
+  static CustomText textSemiBold(
+      {required String text,
+      required int fontSize,
+      Color color = Colors.black,
+      int maxLines = 1,
+      TextOverflow textOverFlow = TextOverflow.ellipsis,
+      TextAlign textAlign = TextAlign.start,
+      TextDecoration textDecoration = TextDecoration.none,
+      double letterSpacing = 0}) {
     return CustomText(
       color: color,
       text: text,
@@ -63,17 +59,16 @@ class StockText {
     );
   }
 
-  static CustomText textInterMedium({
-    required String text,
-    required int fontSize,
-    Color color = Colors.black,
-    int maxLines = 1,
-    TextOverflow textOverFlow = TextOverflow.ellipsis,
-    TextAlign textAlign = TextAlign.start,
-    FontStyle fontStyle = FontStyle.normal,
-    TextDecoration textDecoration = TextDecoration.none,
-    Color? decorationColor
-  }) {
+  static CustomText textMedium(
+      {required String text,
+      required int fontSize,
+      Color color = Colors.black,
+      int maxLines = 1,
+      TextOverflow textOverFlow = TextOverflow.ellipsis,
+      TextAlign textAlign = TextAlign.start,
+      FontStyle fontStyle = FontStyle.normal,
+      TextDecoration textDecoration = TextDecoration.none,
+      Color? decorationColor}) {
     return CustomText(
       color: color,
       text: text,
@@ -88,15 +83,14 @@ class StockText {
     );
   }
 
-  static CustomText textInterBold({
-    required String text,
-    required int fontSize,
-    Color color = Colors.black,
-    int maxLines = 1,
-    TextOverflow textOverFlow = TextOverflow.ellipsis,
-    TextAlign textAlign = TextAlign.start,
-    TextDecoration textDecoration = TextDecoration.none
-  }) {
+  static CustomText textBold(
+      {required String text,
+      required int fontSize,
+      Color color = Colors.black,
+      int maxLines = 1,
+      TextOverflow textOverFlow = TextOverflow.ellipsis,
+      TextAlign textAlign = TextAlign.start,
+      TextDecoration textDecoration = TextDecoration.none}) {
     return CustomText(
       color: color,
       text: text,
@@ -109,5 +103,4 @@ class StockText {
       fontStyle: FontStyle.normal,
     );
   }
-
 }

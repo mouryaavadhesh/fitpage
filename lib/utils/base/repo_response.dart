@@ -1,4 +1,3 @@
-
 import 'package:fitpage/utils/enums/data.dart';
 
 abstract class ConditionalResponse<F, S> {

@@ -11,7 +11,6 @@ Future<void> main() async {
 
   if (!isMainCalled) {
     isMainCalled = true;
-
     await initialize().then((value) async {
       SystemChrome.setSystemUIOverlayStyle(
         const SystemUiOverlayStyle(
@@ -37,13 +36,11 @@ class StockApp extends StatefulWidget {
 }
 
 class StockAppState extends State<StockApp> {
-
   @override
   void initState() {
     super.initState();
   }
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
