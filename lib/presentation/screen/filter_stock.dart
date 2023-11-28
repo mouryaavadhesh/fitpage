@@ -1,9 +1,11 @@
+import 'package:fitpage/domain/entites/display_filter_model.dart';
 import 'package:fitpage/domain/entites/stock_model.dart';
 import 'package:fitpage/presentation/cubit/filter_cubit.dart';
 import 'package:fitpage/presentation/cubit/state/filter_state.dart';
 import 'package:fitpage/utils/enums/stock_filter_emum.dart';
 import 'package:fitpage/utils/template/text.dart';
 import 'package:fitpage/utils/utils.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -21,7 +23,7 @@ class _FilterState extends State<FilterStock> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => FilterCubit(widget.stockSignal, FilterInitial()),
+      create: (context) => FilterCubit(context,widget.stockSignal, FilterInitial()),
       child: BlocBuilder<FilterCubit, FilterState>(builder: (context, state) {
         return SafeArea(
           child: Scaffold(
@@ -52,7 +54,7 @@ class _FilterState extends State<FilterStock> {
         ),
         SliverList(
             delegate: SliverChildBuilderDelegate(
-          (BuildContext context, int index) {
+          (BuildContext _context, int index) {
             SignalCriteria signalCriteria =
                 stockLoaded.stockSignal.criteria[index];
             return StockFilterTypeEnum
@@ -139,7 +141,7 @@ class _FilterState extends State<FilterStock> {
   }
 
   _filterCard(BuildContext context, SignalCriteria signalCriteria, int index) {
-    List<String> list =
+    DisplayFilterModel list =
         context.read<FilterCubit>().filterTextValue(signalCriteria);
     return Container(
       color: Colors.black,
@@ -158,7 +160,7 @@ class _FilterState extends State<FilterStock> {
           ],
           RichText(
             text: TextSpan(
-              children: generateTextSpans(list, index),
+              children: generateTextSpans(context,list, index),
             ),
           ),
         ],
@@ -166,24 +168,29 @@ class _FilterState extends State<FilterStock> {
     );
   }
 
-  List<TextSpan> generateTextSpans(List<String> texts, int index) {
+  List<TextSpan> generateTextSpans(BuildContext _context,DisplayFilterModel displayFilterModel , int index) {
+
     List<TextSpan> textSpans = [];
 
-    for (String text in texts) {
-      if (isNumeric(text)) {
+    for (int i=0;i<displayFilterModel.listString.length;i++) {
+      if (isNumeric(displayFilterModel.listString[i])) {
         textSpans.add(
           TextSpan(
-            text: "($text)",
+            text: "(${displayFilterModel.listString[i]})",
             style: const TextStyle(
               color: Colors.blue, // Customize the style as needed
               fontSize: 14.0,
             ),
+            recognizer: TapGestureRecognizer()..onTap = () {
+              _context.read<FilterCubit>().navigateToValues(displayFilterModel.listIndicator[i],displayFilterModel.listString[i-1],
+                  displayFilterModel.listString[i]);
+            },
           ),
         );
       } else {
         textSpans.add(
           TextSpan(
-            text: text,
+            text: displayFilterModel.listString[i],
             style: const TextStyle(
               color: Colors.white, // Customize the style as needed
               fontSize: 14.0,

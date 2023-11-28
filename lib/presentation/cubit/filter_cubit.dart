@@ -1,20 +1,23 @@
+import 'package:fitpage/domain/entites/display_filter_model.dart';
 import 'package:fitpage/domain/entites/stock_model.dart';
 import 'package:fitpage/presentation/cubit/state/filter_state.dart';
+import 'package:fitpage/presentation/screen/filter_stock_values.dart';
 import 'package:fitpage/utils/base/cubit.dart';
 import 'package:fitpage/utils/enums/stock_filter_emum.dart';
+import 'package:fitpage/utils/navigation_utils.dart';
 import 'package:fitpage/utils/utils.dart';
 import 'package:flutter/material.dart';
 
 class FilterCubit extends AppCubit<FilterState> {
-  final GlobalKey<SliverAnimatedListState> listKey =
-      GlobalKey<SliverAnimatedListState>();
+
+  final BuildContext _context;
   final StockSignal stockSignal;
 
-  FilterCubit(
-    this.stockSignal,
-    super.initialState,
-  ) {
-    init();
+  FilterCubit( this._context,
+      this.stockSignal,FilterState initialState) : super(initialState) {
+    if (initialState is FilterInitial) {
+      init();
+    }
   }
 
   @override
@@ -33,7 +36,7 @@ class FilterCubit extends AppCubit<FilterState> {
     return Future.value(false);
   }
 
-  List<String> filterTextValue(SignalCriteria signalCriteria) {
+  DisplayFilterModel filterTextValue(SignalCriteria signalCriteria) {
     List<String> extractedStrings =
         Utils.extractStringsAssociatedWithDollarSign(signalCriteria.text);
 
@@ -43,9 +46,10 @@ class FilterCubit extends AppCubit<FilterState> {
     // List<int> value = data[key]['values'];
     //
     // Map<dynamic, List<int>> flutterMap = {key: value};
-    // print(flutterMap);
+   // print(extractedStrings);
 
     List<String> dividedStrings = [];
+    List<IndicatorVariable> list = [];
 
     extractedStrings.forEach((element) {
       // print(element);
@@ -65,9 +69,14 @@ class FilterCubit extends AppCubit<FilterState> {
         dividedStrings.insert(
             dividedStrings.length - 1, getTheNumber(indicatorVariable));
       }
+      print(indicatorVariable.values);
+      list.add(IndicatorVariable.fromJson({}));
+      list.add(indicatorVariable);
     });
-
-    return dividedStrings.map((e) => e.trimLeft().trimRight().trim()).toList();
+    return DisplayFilterModel(
+        listString:
+            dividedStrings.map((e) => e.trimLeft().trimRight().trim()).toList(),
+        listIndicator: list);
   }
 
   String getTheNumber(IndicatorVariable indicatorVariable) {
@@ -80,5 +89,19 @@ class FilterCubit extends AppCubit<FilterState> {
     }
 
     return number.toString();
+  }
+
+  navigateToValues(
+      IndicatorVariable indicatorVariable, String text, String value) {
+    print(indicatorVariable.values);
+    Navigator.push(
+        _context,
+        MaterialPageRoute(
+          builder: (context) => FilterStockValue(
+            indicatorVariable: indicatorVariable,
+            text: text,
+            value: value,
+          ),
+        ));
   }
 }
