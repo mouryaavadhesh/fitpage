@@ -22,8 +22,6 @@ class DioClient {
 
       if (dio.interceptors.isEmpty) {
         dio.interceptors.addAll([
-          if (kDebugMode)
-
           InterceptorsWrapper(
             onRequest: (options, handler) async {
               return handler.next(options);
